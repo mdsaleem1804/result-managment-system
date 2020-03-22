@@ -32,6 +32,27 @@ class Landing extends Component {
             ResultEntry
           </Link>
         </li>
+
+        <li className="nav-item">
+          <Link to="/ViewInternal1Results" className="nav-link">
+            Internal1Results
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/ViewInternal2Results" className="nav-link">
+            Internal2Results
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/ViewInternal3Results" className="nav-link">
+            Internal3Results
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/FinalResult" className="nav-link">
+            FinalResult
+          </Link>
+        </li>
         <li className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">
             Logout
@@ -41,7 +62,7 @@ class Landing extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+      <nav className="navbar navbar-expand-lg  navbar-dark bg-success rounded ">
         <button
           className="navbar-toggler"
           type="button"
@@ -58,13 +79,6 @@ class Landing extends Component {
           className="collapse navbar-collapse justify-content-md-center"
           id="navbarsExample10"
         >
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-          </ul>
           {localStorage.usertoken ? userLink : loginRegLink}
         </div>
       </nav>

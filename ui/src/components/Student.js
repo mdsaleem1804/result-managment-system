@@ -114,7 +114,7 @@ const Student = () => {
 
   return (
     <div className="container">
-      <img src={student_page_header} alt="a" width="100%" height="180" />
+      
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="validationCustom01">
           {editing ? (

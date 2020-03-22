@@ -13,7 +13,7 @@ export const register = newUser => {
     });
 };
 
-export const login = user => {
+export const login1 = user => {
   return axios
     .post("https://reqres.in/api/login", {
       email: "eve.holt@reqres.in",
@@ -27,6 +27,29 @@ export const login = user => {
     .catch(err => {
       console.log("Invalid username and password, " + err);
     });
+};
+export const login = user => {
+  if (user.email == "admin@gmail.com" && user.password == "admin") {
+    return axios
+      .get(
+        "http://localhost:8080/spiro_2020/result-managment-system/api/read_login_details.php",
+        {
+          //email: "eve.holt@reqres.in",
+          //password: "cityslicka"
+        }
+      )
+      .then(res => {
+        localStorage.setItem("usertoken", res.data[0].token);
+        //console.log(res);
+        return res.data;
+      })
+      .catch(err => {
+        console.log("Invalid username and password, " + err);
+      });
+  } else {
+    alert("Wrong Password");
+    return;
+  }
 };
 
 export const getUser = id => {
