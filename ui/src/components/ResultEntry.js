@@ -1,20 +1,24 @@
 import React, { useState, Fragment, useEffect } from "react";
-import AddUserForm from "../student/AddUserForm";
-import EditUserForm from "../student/EditUserForm";
-import UserTable from "../student/UserTable";
+import AddResultEntry from "./admin/AddResultEntry";
+import EditUserForm from "./student/EditUserForm";
+import ViewResultEntry from "./admin/ViewResultEntry";
 import { Form, Col } from "react-bootstrap";
 const Student = () => {
   const initialFormState = {
     id: null,
-    student_name: "",
     student_rollno: "",
-    student_gender: "",
-    student_email: ""
+    subject1: "",
+    subject2: "",
+    subject3: "",
+    subject4: "",
+    subject5: "",
+    subject6: "",
+    total: ""
   };
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch(
-      "http://localhost:8080/spiro_2020/result-managment-system/api/read.php"
+      "http://localhost:8080/spiro_2020/result-managment-system/api/read_result_entry.php"
     )
       .then(response => response.json())
       .then(json => setUsers(json))
@@ -30,18 +34,23 @@ const Student = () => {
 
   // CRUD operations
   const addUser = user => {
+    console.log(user);
     //user.id = users.length + 1;
     //setUsers([...users, user]);
     fetch(
-      "http://localhost:8080/spiro_2020/result-managment-system/api/insert.php",
+      "http://localhost:8080/spiro_2020/result-managment-system/api/insert_result_entry.php",
       {
         method: "POST",
         body: JSON.stringify({
           id: user.id,
-          student_name: user.student_name,
           student_rollno: user.student_rollno,
-          student_gender: user.student_gender,
-          student_email: user.student_email
+          exam_type: user.exam_type,
+          subject1: user.subject1,
+          subject2: user.subject2,
+          subject3: user.subject3,
+          subject4: user.subject4,
+          subject5: user.subject5,
+          subject6: user.subject6
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -51,12 +60,11 @@ const Student = () => {
       .then(response => response.json())
       .then(json => console.log(json));
   };
-
   const deleteUser = id => {
     setEditing(false);
     //  setUsers(users.filter(user => user.id !== id));
     fetch(
-      "http://localhost:8080/spiro_2020/result-managment-system/api/delete.php",
+      "http://localhost:8080/spiro_2020/result-managment-system/api/delete_result_entry.php",
       {
         method: "DELETE",
         body: JSON.stringify({
@@ -82,10 +90,13 @@ const Student = () => {
         method: "PUT",
         body: JSON.stringify({
           id: updatedUser.id,
-          student_name: updatedUser.student_name,
           student_rollno: updatedUser.student_rollno,
-          student_gender: updatedUser.student_gender,
-          student_email: updatedUser.student_email
+          subject1: updatedUser.subject1,
+          subject2: updatedUser.subject2,
+          subject3: updatedUser.subject3,
+          subject4: updatedUser.subject4,
+          subject5: updatedUser.subject5,
+          subject6: updatedUser.subject6
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -104,9 +115,13 @@ const Student = () => {
     setCurrentUser({
       id: user.id,
       student_name: user.student_name,
-      student_rollno: user.student_rollno,
-      student_gender: user.student_gender,
-      student_email: user.student_email
+      exam_type: user.exam_type,
+      subject1: user.subject1,
+      subject2: user.subject2,
+      subject3: user.subject3,
+      subject4: user.subject4,
+      subject5: user.subject5,
+      subject6: user.subject6
     });
   };
 
@@ -116,7 +131,6 @@ const Student = () => {
         <Form.Group as={Col} md="12" controlId="validationCustom01">
           {editing ? (
             <Fragment>
-              <h2>Edit Student</h2>
               <EditUserForm
                 editing={editing}
                 setEditing={setEditing}
@@ -126,16 +140,20 @@ const Student = () => {
             </Fragment>
           ) : (
             <Fragment>
-              <h2>Add Student</h2>
-              <AddUserForm addUser={addUser} />
+              <h2>Add Result Entry</h2>
+              <AddResultEntry addUser={addUser} />
             </Fragment>
           )}
         </Form.Group>
       </Form.Row>
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="validationCustom01">
-          <h2>View Students</h2>
-          <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
+          <h2>View Result Entry</h2>
+          <ViewResultEntry
+            users={users}
+            editRow={editRow}
+            deleteUser={deleteUser}
+          />
         </Form.Group>
       </Form.Row>
     </div>

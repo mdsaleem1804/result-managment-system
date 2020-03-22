@@ -11,6 +11,7 @@ import FinalResult from "./admin/FinalResult";
 import Student from "./student/Student";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import student_page_header from "../student_page.jpg";
 const TopMenu = () => {
   return (
     <Router>

@@ -1,15 +1,20 @@
 {
-  "name": "react-hooks",
+  "name": "result-management-system",
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "gh-pages": "^2.1.1",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "16.12.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.1.1"
+    "react-scripts": "^3.1.1",
+    "typeface-roboto": "0.0.75",
+    "jwt-decode": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +33,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage": "https://taniarascia.github.io/react-hooks"
+  "homepage": ""
 }

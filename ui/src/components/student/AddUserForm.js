@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Form, Col } from "react-bootstrap";
-const EditUserForm = props => {
-  const [user, setUser] = useState(props.currentUser);
+
+const AddUserForm = props => {
+  const initialFormState = {
+    id: null,
+    student_name: "",
+    student_rollno: "",
+    student_gender: "",
+    student_email: ""
+  };
+  const [user, setUser] = useState(initialFormState);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -9,10 +17,23 @@ const EditUserForm = props => {
   };
 
   return (
-    <form
+    <Form
       onSubmit={event => {
         event.preventDefault();
-        props.updateUser(user.id, user);
+        /* console.log(user.student_name);
+        console.log(user.student_rollno);
+        console.log(user.student_gender);
+        console.log(user.student_email);*/
+        if (
+          !user.student_name ||
+          !user.student_rollno ||
+          !user.student_gender ||
+          !user.student_email
+        )
+          return;
+
+        props.addUser(user);
+        setUser(initialFormState);
       }}
     >
       <Form.Row>
@@ -58,15 +79,13 @@ const EditUserForm = props => {
           />
         </Form.Group>
       </Form.Row>
-      <button>Update user</button>
-      <button
-        onClick={() => props.setEditing(false)}
-        className="button muted-button"
-      >
-        Cancel
-      </button>
-    </form>
+      <Form.Row>
+        <Form.Group as={Col} md="3">
+          <button>Add New Student</button>
+        </Form.Group>
+      </Form.Row>
+    </Form>
   );
 };
 
-export default EditUserForm;
+export default AddUserForm;

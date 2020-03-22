@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { Form, Col } from "react-bootstrap";
-const AddUserForm = props => {
-  const initialFormState = {
-    id: null,
-    student_name: "",
-    student_rollno: "",
-    student_gender: "",
-    student_email: ""
-  };
-  const [user, setUser] = useState(initialFormState);
+const EditUserForm = props => {
+  const [user, setUser] = useState(props.currentUser);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -16,23 +9,10 @@ const AddUserForm = props => {
   };
 
   return (
-    <Form
+    <form
       onSubmit={event => {
         event.preventDefault();
-        /* console.log(user.student_name);
-        console.log(user.student_rollno);
-        console.log(user.student_gender);
-        console.log(user.student_email);*/
-        if (
-          !user.student_name ||
-          !user.student_rollno ||
-          !user.student_gender ||
-          !user.student_email
-        )
-          return;
-
-        props.addUser(user);
-        setUser(initialFormState);
+        props.updateUser(user.id, user);
       }}
     >
       <Form.Row>
@@ -61,7 +41,11 @@ const AddUserForm = props => {
       <Form.Row>
         <Form.Group as={Col} md="6">
           <Form.Label>Gender</Form.Label>
-          <select name="student_gender" onChange={handleInputChange}>
+          <select
+            name="student_gender"
+            value={user.student_gender}
+            onChange={handleInputChange}
+          >
             <option>Select</option>
             <option>Male</option>
             <option>Female</option>
@@ -78,13 +62,15 @@ const AddUserForm = props => {
           />
         </Form.Group>
       </Form.Row>
-      <Form.Row>
-        <Form.Group as={Col} md="3">
-          <button>Add New Student</button>
-        </Form.Group>
-      </Form.Row>
-    </Form>
+      <button>Update user</button>
+      <button
+        onClick={() => props.setEditing(false)}
+        className="button muted-button"
+      >
+        Cancel
+      </button>
+    </form>
   );
 };
 
-export default AddUserForm;
+export default EditUserForm;
