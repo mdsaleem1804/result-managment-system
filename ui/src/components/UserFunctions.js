@@ -13,21 +13,6 @@ export const register = newUser => {
     });
 };
 
-export const login1 = user => {
-  return axios
-    .post("https://reqres.in/api/login", {
-      email: "eve.holt@reqres.in",
-      password: "cityslicka"
-    })
-    .then(res => {
-      localStorage.setItem("usertoken", res.data.token);
-      console.log(res);
-      return res.data;
-    })
-    .catch(err => {
-      console.log("Invalid username and password, " + err);
-    });
-};
 export const login = user => {
   if (user.email == "admin@gmail.com" && user.password == "admin") {
     return axios

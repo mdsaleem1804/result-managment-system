@@ -22,12 +22,22 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
+    if (user.email == "" && user.password == "") {
+      alert("Please Enter UserName & Password");
+      return;
+    }
 
-    login(user).then(res => {
-      if (res) {
-        this.props.history.push(`/profile`);
-      }
-    });
+    if (user.email == "admin@gmail.com" && user.password == "admin") {
+      login(user).then(res => {
+        console.log(res);
+        if (res) {
+          this.props.history.push(`/profile`);
+        }
+      });
+    } else {
+      alert("please check credentials");
+      return;
+    }
   }
 
   render() {

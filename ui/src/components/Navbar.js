@@ -14,7 +14,7 @@ class Landing extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/login" className="nav-link">
-            Login
+            ResultManagmentSystem
           </Link>
         </li>
       </ul>

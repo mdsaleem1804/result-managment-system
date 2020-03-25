@@ -3,7 +3,7 @@ import AddUserForm from "./student/AddUserForm";
 import EditUserForm from "./student/EditUserForm";
 import UserTable from "./student/UserTable";
 import { Form, Col } from "react-bootstrap";
-import student_page_header from "../images/student_page.jpg";
+
 import "../nellaibill.css";
 const Student = () => {
   const initialFormState = {
@@ -114,7 +114,6 @@ const Student = () => {
 
   return (
     <div className="container">
-      
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="validationCustom01">
           {editing ? (
