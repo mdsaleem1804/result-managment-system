@@ -1,5 +1,5 @@
 import React from "react";
-
+import LoadingSpinner from "../common/LoadingSpinner";
 const ViewResultEntry = props => (
   <table>
     <thead>
@@ -40,9 +40,7 @@ const ViewResultEntry = props => (
           </tr>
         ))
       ) : (
-        <tr>
-          <td colSpan={3}>No Entries</td>
-        </tr>
+        <LoadingSpinner />
       )}
     </tbody>
   </table>

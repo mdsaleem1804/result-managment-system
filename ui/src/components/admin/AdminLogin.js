@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import login_page_header from "../../forms/login_header.png";
-import Navbar from "../NavBar";
+import Navbar from "../NavBarMain";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";

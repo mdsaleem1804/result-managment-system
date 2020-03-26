@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Container } from "react-bootstrap";
-const ViewInternal1Results = props => {
+import LoadingSpinner from "../common/LoadingSpinner";
+const ViewInternalResults = props => {
   const initialFormState = {
     id: null,
     student_rollno: "",
@@ -13,6 +14,7 @@ const ViewInternal1Results = props => {
     total: ""
   };
   const [users, setUsers] = useState([]);
+  console.log(props.match.params.id);
   useEffect(() => {
     fetch(
       "http://localhost:8080/spiro_2020/result-managment-system/api/read_result_entry.php"
@@ -29,7 +31,6 @@ const ViewInternal1Results = props => {
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(0);
   const [examid, setExamid] = useState(1);
-
   const deleteUser = id => {
     setEditing(false);
     //  setUsers(users.filter(user => user.id !== id));
@@ -50,7 +51,7 @@ const ViewInternal1Results = props => {
   };
   return (
     <Container>
-      <h1>Internal Exam {examid} Results</h1>
+      <h1>Internal Exam {props.match.params.id} Results</h1>
       <br />
       <table>
         <thead>
@@ -71,7 +72,7 @@ const ViewInternal1Results = props => {
           {users.length > 0 ? (
             users
               .filter(function(user) {
-                return user.exam_type == "InternalExam1"; // filters and returns a new array
+                return user.exam_type == "InternalExam" + props.match.params.id; // filters and returns a new array
               })
               .map(user => (
                 <tr key={user.id}>
@@ -95,9 +96,7 @@ const ViewInternal1Results = props => {
                 </tr>
               ))
           ) : (
-            <tr>
-              <td colSpan={3}>No Entries</td>
-            </tr>
+            <LoadingSpinner />
           )}
         </tbody>
       </table>
@@ -105,4 +104,4 @@ const ViewInternal1Results = props => {
   );
 };
 
-export default ViewInternal1Results;
+export default ViewInternalResults;

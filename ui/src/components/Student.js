@@ -4,7 +4,7 @@ import EditUserForm from "./student/EditUserForm";
 import UserTable from "./student/UserTable";
 import { Form, Col } from "react-bootstrap";
 
-import "../nellaibill.css";
+import "../css/nellaibill.css";
 const Student = () => {
   const initialFormState = {
     id: null,

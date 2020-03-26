@@ -1,8 +1,9 @@
 import React, { useState, Fragment, useEffect } from "react";
-import AddResultEntry from "./admin/AddResultEntry";
-import EditUserForm from "./student/EditUserForm";
-import ViewResultEntry from "./admin/ViewResultEntry";
+import AddResultEntry from "./AddResultEntry";
+import EditUserForm from "../student/EditUserForm";
+import ViewResultEntry from "./ViewResultEntry";
 import { Form, Col } from "react-bootstrap";
+import LoadingSpinner from "../common/LoadingSpinner";
 const Student = () => {
   const initialFormState = {
     id: null,
@@ -16,23 +17,25 @@ const Student = () => {
     total: ""
   };
   const [users, setUsers] = useState([]);
+
+  // Setting state
+
+  const [currentUser, setCurrentUser] = useState(initialFormState);
+  const [editing, setEditing] = useState(false);
+  const [loadingResults, setLoadingResults] = useState(true);
+
+  // CRUD operations
   useEffect(() => {
     fetch(
       "http://localhost:8080/spiro_2020/result-managment-system/api/read_result_entry.php"
     )
       .then(response => response.json())
       .then(json => setUsers(json))
+      .then(setLoadingResults(false))
       .catch(error => {
         console.error(error);
       });
   });
-  // Setting state
-
-  const [currentUser, setCurrentUser] = useState(initialFormState);
-  const [editing, setEditing] = useState(false);
-  const [, setLoading] = useState(0);
-
-  // CRUD operations
   const addUser = user => {
     console.log(user);
     //user.id = users.length + 1;
@@ -81,7 +84,6 @@ const Student = () => {
 
   const updateUser = (id, updatedUser) => {
     setEditing(false);
-    setLoading(20);
 
     //setUsers(users.map(user => (user.id === id ? updatedUser : user)));
     fetch(
@@ -104,7 +106,6 @@ const Student = () => {
       }
     )
       .then(response => response.json())
-      .then(setLoading(100))
       //.then(error => alert(error))
       .then(json => console.log(json));
   };
@@ -141,7 +142,7 @@ const Student = () => {
           ) : (
             <Fragment>
               <h2>Add Result Entry</h2>
-              <AddResultEntry addUser={addUser} />
+              <AddResultEntry addUser={addUser} users={users} />
             </Fragment>
           )}
         </Form.Group>
@@ -149,11 +150,19 @@ const Student = () => {
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="validationCustom01">
           <h2>View Result Entry</h2>
-          <ViewResultEntry
-            users={users}
-            editRow={editRow}
-            deleteUser={deleteUser}
-          />
+
+          {loadingResults == true ? (
+            <div>
+              <br />
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <ViewResultEntry
+              users={users}
+              editRow={editRow}
+              deleteUser={deleteUser}
+            />
+          )}
         </Form.Group>
       </Form.Row>
     </div>

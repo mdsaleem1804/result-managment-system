@@ -1,5 +1,5 @@
 import React from "react";
-
+import LoadingSpinner from "../common/LoadingSpinner";
 const UserTable = props => (
   <table>
     <thead>
@@ -38,9 +38,7 @@ const UserTable = props => (
           </tr>
         ))
       ) : (
-        <tr>
-          <td colSpan={3}>No users</td>
-        </tr>
+        <LoadingSpinner />
       )}
     </tbody>
   </table>

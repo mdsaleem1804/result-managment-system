@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-class Landing extends Component {
+class NavBarMain extends Component {
   logOut(e) {
     e.preventDefault();
     localStorage.removeItem("usertoken");
@@ -34,17 +34,17 @@ class Landing extends Component {
         </li>
 
         <li className="nav-item">
-          <Link to="/ViewInternal1Results" className="nav-link">
+          <Link to="/ViewInternalResults/1" className="nav-link">
             Internal1Results
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/ViewInternal2Results" className="nav-link">
+          <Link to="/ViewInternalResults/2" className="nav-link">
             Internal2Results
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/ViewInternal3Results" className="nav-link">
+          <Link to="/ViewInternalResults/3" className="nav-link">
             Internal3Results
           </Link>
         </li>
@@ -86,4 +86,4 @@ class Landing extends Component {
   }
 }
 
-export default withRouter(Landing);
+export default withRouter(NavBarMain);
