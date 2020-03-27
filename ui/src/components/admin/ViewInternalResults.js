@@ -1,18 +1,7 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
 const ViewInternalResults = props => {
-  const initialFormState = {
-    id: null,
-    student_rollno: "",
-    subject1: "",
-    subject2: "",
-    subject3: "",
-    subject4: "",
-    subject5: "",
-    subject6: "",
-    total: ""
-  };
   const [users, setUsers] = useState([]);
   console.log(props.match.params.id);
   useEffect(() => {
@@ -27,28 +16,6 @@ const ViewInternalResults = props => {
   });
   // Setting state
 
-  const [currentUser, setCurrentUser] = useState(initialFormState);
-  const [editing, setEditing] = useState(false);
-  const [loading, setLoading] = useState(0);
-  const [examid, setExamid] = useState(1);
-  const deleteUser = id => {
-    setEditing(false);
-    //  setUsers(users.filter(user => user.id !== id));
-    fetch(
-      "http://localhost:8080/spiro_2020/result-managment-system/api/delete_result_entry.php",
-      {
-        method: "DELETE",
-        body: JSON.stringify({
-          id: id
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      }
-    )
-      .then(response => response.json())
-      .then(json => console.log(json));
-  };
   return (
     <Container>
       <h1>Internal Exam {props.match.params.id} Results</h1>
@@ -72,7 +39,9 @@ const ViewInternalResults = props => {
           {users.length > 0 ? (
             users
               .filter(function(user) {
-                return user.exam_type == "InternalExam" + props.match.params.id; // filters and returns a new array
+                return (
+                  user.exam_type === "InternalExam" + props.match.params.id
+                ); // filters and returns a new array
               })
               .map(user => (
                 <tr key={user.id}>

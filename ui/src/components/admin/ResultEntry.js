@@ -151,7 +151,7 @@ const Student = () => {
         <Form.Group as={Col} md="12" controlId="validationCustom01">
           <h2>View Result Entry</h2>
 
-          {loadingResults == true ? (
+          {loadingResults === true ? (
             <div>
               <br />
               <LoadingSpinner />

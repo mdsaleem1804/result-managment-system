@@ -2,34 +2,30 @@
 // SET HEADER
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: GET");
-header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+
 
 // INCLUDING DATABASE AND MAKING OBJECT
 require 'database.php';
 $db_connection = new Database();
 $conn = $db_connection->dbConnection();
-
-// CHECK GET ID PARAMETER OR NOT
-if(isset($_GET['id']))
+// GET DATA FORM REQUEST
+$data = json_decode(file_get_contents("php://input"));
+//CHECKING, IF ID AVAILABLE ON $data
+if(isset($data->email))
 {
-    //IF HAS ID PARAMETER
-    $post_id = filter_var($_GET['id'], FILTER_VALIDATE_INT,[
-        'options' => [
-            'default' => 'all_posts',
-            'min_range' => 1
-        ]
-    ]);
+    $post_email = $data->email;
+    $post_password = $data->password;
 }
-else{
-    $post_id = 'all_posts';
-}
+// CHECK GET ID PARAMETER OR NOT
 
 // MAKE SQL QUERY
 // IF GET POSTS ID, THEN SHOW POSTS BY ID OTHERWISE SHOW ALL POSTS
-$sql = is_numeric($post_id) ? "SELECT * FROM `admin_login` WHERE id='$post_id'" : "SELECT * FROM `admin_login` order by id desc"; 
-
+$sql = "SELECT * FROM `admin_login` WHERE email='$post_email' and password='$post_password'"; 
+//echo $sql;
 $stmt = $conn->prepare($sql);
 
 $stmt->execute();
@@ -49,12 +45,12 @@ if($stmt->rowCount() > 0){
         array_push($posts_array, $post_data);
     }
     //SHOW POST/POSTS IN JSON FORMAT
-    echo json_encode($posts_array);
- 
-
-}
+   // echo json_encode($posts_array);
+    echo json_encode("success");
+ }
 else{
     //IF THER IS NO POST IN OUR DATABASE
-    echo json_encode(['message'=>'No post found']);
+   //http_response_code(404);
+    echo json_encode("failure");
 }
 ?>

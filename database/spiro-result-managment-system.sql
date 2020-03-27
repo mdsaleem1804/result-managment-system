@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2020 at 06:56 PM
+-- Generation Time: Mar 27, 2020 at 12:34 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `result_entry` (
   `subject6` int(3) NOT NULL,
   `total` int(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `result_entry`
@@ -68,7 +68,9 @@ CREATE TABLE IF NOT EXISTS `result_entry` (
 
 INSERT INTO `result_entry` (`id`, `student_rollno`, `exam_type`, `subject1`, `subject2`, `subject3`, `subject4`, `subject5`, `subject6`, `total`) VALUES
 (1, '101', 'InternalExam1', 50, 60, 50, 60, 40, 40, 300),
-(2, '102', 'InternalExam1', 80, 50, 60, 75, 64, 98, 427);
+(2, '102', 'InternalExam1', 80, 50, 60, 75, 64, 98, 427),
+(3, '103', 'InternalExam2', 10, 20, 30, 40, 50, 60, 210),
+(5, '103', 'InternalExam1', 50, 76, 77, 67, 67, 67, 404);
 
 -- --------------------------------------------------------
 
@@ -83,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_gender` varchar(20) NOT NULL,
   `student_email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `student`
@@ -91,7 +93,8 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 INSERT INTO `student` (`id`, `student_name`, `student_rollno`, `student_gender`, `student_email`) VALUES
 (1, 'Hana', '101', 'Female', 'hana@gmail.com'),
-(2, 'raja', '102', 'Male', 'raja@gmail.com');
+(2, 'raja', '102', 'Male', 'raja@gmail.com'),
+(3, 'Anil', '103', 'Male', 'anil@gmail.com');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

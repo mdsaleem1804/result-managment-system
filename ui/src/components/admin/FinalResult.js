@@ -1,11 +1,6 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 const FinalResult = props => {
-  const initialFormState = {
-    id: null,
-    student_rollno: "",
-    total: ""
-  };
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch(

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./css/main.css";
 import Navbar from "./components/NavBarMain";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Student from "./components/Student";
 import ResultEntry from "./components/admin/ResultEntry";
@@ -21,7 +20,6 @@ class App extends Component {
             <img src={student_page_header} alt="a" width="100%" height="180" />
             <Route exact path="/" component={Login} />
             <div className="container">
-              <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/student" component={Student} />

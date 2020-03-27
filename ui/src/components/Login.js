@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { login } from "./admin/UserFunctions";
-
+import axios from "axios";
 class Login extends Component {
   constructor() {
     super();
@@ -16,28 +15,38 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+  loginSuccess(response) {
+    localStorage.setItem("usertoken", response.data);
+    this.props.history.push(`/profile`);
+  }
+  loginFail() {
+    alert("Login Fail !");
+    return;
+  }
   onSubmit(e) {
     e.preventDefault();
     const user = {
       email: this.state.email,
       password: this.state.password
     };
-    if (user.email == "" && user.password == "") {
+    if (user.email === "" && user.password === "") {
       alert("Please Enter UserName & Password");
       return;
     }
-
-    if (user.email == "admin@gmail.com" && user.password == "admin") {
-      login(user).then(res => {
-        console.log(res);
-        if (res) {
-          this.props.history.push(`/profile`);
-        }
+    axios
+      .post(
+        "http://localhost:8080/spiro_2020/result-managment-system/api/read_login_details.php",
+        { email: user.email, password: user.password }
+      )
+      .then(response => {
+        //setLoading(false);
+        response.data == "success"
+          ? this.loginSuccess(response)
+          : this.loginFail();
+      })
+      .catch(error => {
+        console.log(error);
       });
-    } else {
-      alert("please check credentials");
-      return;
-    }
   }
 
   render() {
