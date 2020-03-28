@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
+import LinearProgress from "@material-ui/core/LinearProgress";
 class Login extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
       password: "",
-      loginStatusErrorMessage: ""
+      loginStatusErrorMessage: "",
+      loading: false
     };
 
     this.onChange = this.onChange.bind(this);
@@ -23,24 +25,28 @@ class Login extends Component {
   }
   loginFail() {
     this.setState({
-      loginStatusErrorMessage: "Login Fail"
+      loginStatusErrorMessage: "Please check with your credentials",
+      loading: false
     });
   }
   serverNotConnected() {
     this.setState({
-      loginStatusErrorMessage: "Please check Server/Network Connection !"
+      loginStatusErrorMessage: "Server Error !",
+      loading: false
     });
   }
 
   onSubmit(e) {
     e.preventDefault();
+    this.setState({ loginStatusErrorMessage: "", loading: true });
     const user = {
       email: this.state.email,
       password: this.state.password
     };
     if (user.email === "" && user.password === "") {
       this.setState({
-        loginStatusErrorMessage: "Please Enter UserName & Password"
+        loginStatusErrorMessage: "Please Enter UserName & Password",
+        loading: false
       });
       return;
     }
@@ -62,7 +68,8 @@ class Login extends Component {
 
   render() {
     const isLoggedInErrorMessage = this.state.loginStatusErrorMessage;
-    let alert;
+    const isLoading = this.state.loading;
+    let alert, button;
     if (isLoggedInErrorMessage == "") {
     } else {
       alert = (
@@ -71,11 +78,34 @@ class Login extends Component {
         </Alert>
       );
     }
+    if (isLoading) {
+      button = (
+        <div>
+          <button
+            disabled
+            type="submit"
+            className="btn btn-lg btn-primary btn-block"
+          >
+            Sign in
+          </button>
+
+          <LinearProgress color="secondary" />
+        </div>
+      );
+    } else {
+      button = (
+        <div>
+          <button type="submit" className="btn btn-lg btn-primary btn-block">
+            Sign in
+          </button>
+        </div>
+      );
+    }
     return (
       <div className="container">
-        {alert}
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
+            {alert}
             <form noValidate onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
               <div className="form-group">
@@ -100,9 +130,7 @@ class Login extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <button type="submit" className="btn  btn-primary btn-block">
-                Sign in
-              </button>
+              {button}
             </form>
           </div>
         </div>

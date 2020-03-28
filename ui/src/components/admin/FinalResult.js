@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import LoadingSpinner from "../common/LoadingSpinner";
 const FinalResult = props => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -37,9 +38,7 @@ const FinalResult = props => {
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan={3}>No Entries</td>
-            </tr>
+            <LoadingSpinner />
           )}
         </tbody>
       </table>
