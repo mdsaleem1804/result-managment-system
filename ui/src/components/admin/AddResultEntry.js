@@ -40,6 +40,7 @@ const AddResultEntry = props => {
   let optionItems = rollNo.map(user => (
     <option key={user.student_name}>{user.student_rollno}</option>
   ));
+
   if (loading) {
     return (
       <div>
@@ -76,6 +77,7 @@ const AddResultEntry = props => {
                 value={user.student_rollno}
                 onChange={handleInputChange}
               >
+                <option>Select</option>
                 {optionItems}
               </select>
             </Form.Group>
