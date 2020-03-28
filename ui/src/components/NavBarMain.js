@@ -62,7 +62,7 @@ class NavBarMain extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-lg  navbar-dark bg-success rounded ">
+      <nav className="navbar navbar-expand-lg  navbar-light bg-primary rounded font-weight-bold">
         <button
           className="navbar-toggler"
           type="button"

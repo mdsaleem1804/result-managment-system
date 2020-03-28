@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Alert from "@material-ui/lab/Alert";
 class Login extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      loginStatusErrorMessage: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -20,9 +22,16 @@ class Login extends Component {
     this.props.history.push(`/profile`);
   }
   loginFail() {
-    alert("Login Fail !");
-    return;
+    this.setState({
+      loginStatusErrorMessage: "Login Fail"
+    });
   }
+  serverNotConnected() {
+    this.setState({
+      loginStatusErrorMessage: "Please check Server/Network Connection !"
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const user = {
@@ -30,7 +39,9 @@ class Login extends Component {
       password: this.state.password
     };
     if (user.email === "" && user.password === "") {
-      alert("Please Enter UserName & Password");
+      this.setState({
+        loginStatusErrorMessage: "Please Enter UserName & Password"
+      });
       return;
     }
     axios
@@ -45,13 +56,24 @@ class Login extends Component {
           : this.loginFail();
       })
       .catch(error => {
-        console.log(error);
+        this.serverNotConnected();
       });
   }
 
   render() {
+    const isLoggedInErrorMessage = this.state.loginStatusErrorMessage;
+    let alert;
+    if (isLoggedInErrorMessage == "") {
+    } else {
+      alert = (
+        <Alert variant="filled" severity="error">
+          {isLoggedInErrorMessage}
+        </Alert>
+      );
+    }
     return (
       <div className="container">
+        {alert}
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
             <form noValidate onSubmit={this.onSubmit}>
@@ -78,10 +100,7 @@ class Login extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <button
-                type="submit"
-                className="btn btn-lg btn-primary btn-block"
-              >
+              <button type="submit" className="btn  btn-primary btn-block">
                 Sign in
               </button>
             </form>

@@ -3,3 +3,9 @@ containerborder {
   borderradius: 8px;
   color: "white";
 }
+.navbar-nav nav-item {
+  color: white;
+}
+.nav-link {
+  color: white;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./css/main.css";
+import "./css/nellaibill.css";
 import Navbar from "./components/NavBarMain";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
@@ -17,7 +18,7 @@ class App extends Component {
         <div className="App">
           <Container>
             <Navbar />
-            <img src={student_page_header} alt="a" width="100%" height="180" />
+
             <Route exact path="/" component={Login} />
             <div className="container">
               <Route exact path="/login" component={Login} />
