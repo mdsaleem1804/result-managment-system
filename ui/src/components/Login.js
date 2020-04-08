@@ -9,7 +9,7 @@ class Login extends Component {
       email: "",
       password: "",
       loginStatusErrorMessage: "",
-      loading: false
+      loading: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -26,13 +26,13 @@ class Login extends Component {
   loginFail() {
     this.setState({
       loginStatusErrorMessage: "Please check with your credentials",
-      loading: false
+      loading: false,
     });
   }
   serverNotConnected() {
     this.setState({
       loginStatusErrorMessage: "Server Error !",
-      loading: false
+      loading: false,
     });
   }
 
@@ -41,12 +41,12 @@ class Login extends Component {
     this.setState({ loginStatusErrorMessage: "", loading: true });
     const user = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
     if (user.email === "" && user.password === "") {
       this.setState({
         loginStatusErrorMessage: "Please Enter UserName & Password",
-        loading: false
+        loading: false,
       });
       return;
     }
@@ -55,13 +55,13 @@ class Login extends Component {
         "http://localhost:8080/spiro_2020/result-managment-system/api/read_login_details.php",
         { email: user.email, password: user.password }
       )
-      .then(response => {
+      .then((response) => {
         //setLoading(false);
         response.data == "success"
           ? this.loginSuccess(response)
           : this.loginFail();
       })
-      .catch(error => {
+      .catch((error) => {
         this.serverNotConnected();
       });
   }
