@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Nav, Dropdown, Icon, Sidenav, Sidebar, Navbar } from "rsuite";
-import "rsuite/dist/styles/rsuite-default.css";
+
 const headerStyles = {
   padding: 18,
   fontSize: 16,
@@ -76,7 +76,7 @@ class SideBarLeft extends Component {
               size="lg"
               style={{ verticalAlign: 0 }}
             />
-            <span style={{ marginLeft: 12 }}> BRAND</span>
+            <span style={{ marginLeft: 12 }}> SCHOOL MGMT SYSTEM</span>
           </div>
         </Sidenav.Header>
         <Sidenav expanded={expand} defaultOpenKeys={["3"]} appearance="subtle">
@@ -85,26 +85,26 @@ class SideBarLeft extends Component {
               <Nav.Item eventKey="1" active icon={<Icon icon="dashboard" />}>
                 Dashboard
               </Nav.Item>
-              <Nav.Item eventKey="2" icon={<Icon icon="group" />}>
-                User Group
-              </Nav.Item>
+
               <Dropdown
                 eventKey="3"
                 trigger="hover"
-                title="Advanced"
+                title="Student"
                 icon={<Icon icon="magic" />}
                 placement="rightStart"
               >
-                <Dropdown.Item eventKey="3-1">Geo</Dropdown.Item>
+                <Dropdown.Item eventKey="3-1">Add Student</Dropdown.Item>
+                <Dropdown.Item eventKey="3-1">View Students</Dropdown.Item>
               </Dropdown>
               <Dropdown
                 eventKey="4"
                 trigger="hover"
-                title="Settings"
+                title="Staff"
                 icon={<Icon icon="gear-circle" />}
                 placement="rightStart"
               >
-                <Dropdown.Item eventKey="4-1">Applications</Dropdown.Item>
+                <Dropdown.Item eventKey="4-1">Add Staff</Dropdown.Item>
+                <Dropdown.Item eventKey="4-2">View Staff</Dropdown.Item>
               </Dropdown>
             </Nav>
           </Sidenav.Body>

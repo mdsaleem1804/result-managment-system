@@ -1,27 +1,23 @@
 import React, { Component } from "react";
-
+import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, Dropdown, Icon } from "rsuite";
 class HeaderNavBarMain extends Component {
   logOut(e) {
     e.preventDefault();
-    localStorage.removeItem("usertoken");
-    console.log("logout");
-    // this.context.router.push("/");
+    localStorage.clear();
+    window.location.href = "/";
   }
   render() {
     const loginRegLink = (
       <div>
         <Nav>
-          <Nav.Item icon={<Icon icon="home" />}>
-            Result Managment System
-          </Nav.Item>
+          <Nav.Item icon={<Icon icon="home" />}>Help</Nav.Item>
         </Nav>
       </div>
     );
     const userLink = (
       <div>
         <Nav>
-          <Nav.Item icon={<Icon icon="home" />}>Home</Nav.Item>
           <Nav.Item href="/Student">Student</Nav.Item>
           <Nav.Item href="/ResultEntry">ResultEntry</Nav.Item>
 
@@ -59,4 +55,4 @@ class HeaderNavBarMain extends Component {
   }
 }
 
-export default HeaderNavBarMain;
+export default withRouter(HeaderNavBarMain);

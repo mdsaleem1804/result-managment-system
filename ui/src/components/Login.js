@@ -21,7 +21,7 @@ class Login extends Component {
   }
   loginSuccess(response) {
     localStorage.setItem("usertoken", response.data);
-    this.props.history.push(`/profile`);
+    this.props.history.push(`/Profile`);
   }
   loginFail() {
     this.setState({
