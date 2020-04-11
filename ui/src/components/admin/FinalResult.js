@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import LoadingSpinner from "../common/LoadingSpinner";
+import Helper from "../common/Helper";
 const FinalResult = (props) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch(
-      "http://localhost:8080/spiro_2020/result-managment-system/api/final_result.php"
-    )
+    fetch(Helper.getUrl() + "final_result.php")
       .then((response) => response.json())
       .then((json) => setUsers(json))
       .catch((error) => {
@@ -15,7 +13,7 @@ const FinalResult = (props) => {
   });
   // Setting state
   let usersList;
-  if (users.length == 0) {
+  if (users.length === 0) {
     usersList = <h2>No users</h2>;
   } else {
     if (users.length > 0) {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Form, Col, Container } from "react-bootstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
-const AddResultEntry = props => {
+import Helper from "../common/Helper";
+const AddResultEntry = (props) => {
   const initialFormState = {
     id: null,
     student_rollno: "",
@@ -11,10 +12,10 @@ const AddResultEntry = props => {
     subject3: "",
     subject4: "",
     subject5: "",
-    subject6: ""
+    subject6: "",
   };
   const [user, setUser] = useState(initialFormState);
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
@@ -23,21 +24,19 @@ const AddResultEntry = props => {
 
   useEffect(() => {
     let initialRollNo = [];
-    fetch(
-      "http://localhost:8080/spiro_2020/result-managment-system/api/read.php"
-    )
-      .then(response => {
+    fetch(Helper.getUrl() + "read.php")
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
-        initialRollNo = data.map(planet => {
+      .then((data) => {
+        initialRollNo = data.map((planet) => {
           return planet;
         });
         setRollNo(initialRollNo);
         setLoading(false);
       });
   });
-  let optionItems = rollNo.map(user => (
+  let optionItems = rollNo.map((user) => (
     <option key={user.student_name}>{user.student_rollno}</option>
   ));
 
@@ -51,7 +50,7 @@ const AddResultEntry = props => {
     return (
       <Container>
         <Form
-          onSubmit={event => {
+          onSubmit={(event) => {
             event.preventDefault();
             if (
               !user.student_rollno ||

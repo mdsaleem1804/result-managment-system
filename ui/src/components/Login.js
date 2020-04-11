@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import Helper from "./common/Helper";
 class Login extends Component {
   constructor() {
     super();
@@ -51,13 +52,13 @@ class Login extends Component {
       return;
     }
     axios
-      .post(
-        "http://localhost:8080/spiro_2020/result-managment-system/api/read_login_details.php",
-        { email: user.email, password: user.password }
-      )
+      .post(Helper.getUrl() + "read_login_details.php", {
+        email: user.email,
+        password: user.password,
+      })
       .then((response) => {
         //setLoading(false);
-        response.data == "success"
+        response.data === "success"
           ? this.loginSuccess(response)
           : this.loginFail();
       })
@@ -67,10 +68,11 @@ class Login extends Component {
   }
 
   render() {
+    Helper.getUrl();
     const isLoggedInErrorMessage = this.state.loginStatusErrorMessage;
     const isLoading = this.state.loading;
     let alert, button;
-    if (isLoggedInErrorMessage == "") {
+    if (isLoggedInErrorMessage === "") {
     } else {
       alert = (
         <Alert variant="filled" severity="error">
@@ -107,7 +109,7 @@ class Login extends Component {
           <div className="col-md-6 mt-5 mx-auto">
             {alert}
             <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+              <h1 className="h3 mb-3 font-weight-normal">Login Here.</h1>
               <div className="form-group">
                 <label htmlFor="email">Email address</label>
                 <input

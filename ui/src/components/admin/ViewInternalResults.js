@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
-const ViewInternalResults = props => {
+import Helper from "../common/Helper";
+const ViewInternalResults = (props) => {
   const [users, setUsers] = useState([]);
   console.log(props.match.params.id);
   useEffect(() => {
-    fetch(
-      "http://localhost:8080/spiro_2020/result-managment-system/api/read_result_entry.php"
-    )
-      .then(response => response.json())
-      .then(json => setUsers(json))
-      .catch(error => {
+    fetch(Helper.getUrl() + "read_result_entry.php")
+      .then((response) => response.json())
+      .then((json) => setUsers(json))
+      .catch((error) => {
         console.error(error);
       });
   });
@@ -38,12 +37,12 @@ const ViewInternalResults = props => {
         <tbody>
           {users.length > 0 ? (
             users
-              .filter(function(user) {
+              .filter(function (user) {
                 return (
                   user.exam_type === "InternalExam" + props.match.params.id
                 ); // filters and returns a new array
               })
-              .map(user => (
+              .map((user) => (
                 <tr key={user.id}>
                   <td>{user.student_rollno}</td>
                   <td>{user.exam_type}</td>

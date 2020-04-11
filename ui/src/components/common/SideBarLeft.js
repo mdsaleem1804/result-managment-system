@@ -27,7 +27,7 @@ const NavToggle = ({ expand, onChange }) => {
             placement="topStart"
             trigger="click"
             renderTitle={() => {
-              return <Icon style={iconStyles} icon="cog" />;
+              return <Icon style={iconStyles} icon="close-circle" />;
             }}
           >
             <Dropdown.Item>Help</Dropdown.Item>
@@ -85,26 +85,55 @@ class SideBarLeft extends Component {
               <Nav.Item eventKey="1" active icon={<Icon icon="dashboard" />}>
                 Dashboard
               </Nav.Item>
+              <Dropdown
+                eventKey="2"
+                trigger="hover"
+                title="Master"
+                placement="rightStart"
+              >
+                <Dropdown.Item eventKey="2-1" href="./#/Department">
+                  Department
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="2-2" href="./#/Subject">
+                  Subject
+                </Dropdown.Item>
+              </Dropdown>
 
               <Dropdown
                 eventKey="3"
                 trigger="hover"
                 title="Student"
-                icon={<Icon icon="magic" />}
                 placement="rightStart"
               >
-                <Dropdown.Item eventKey="3-1">Add Student</Dropdown.Item>
-                <Dropdown.Item eventKey="3-1">View Students</Dropdown.Item>
+                <Dropdown.Item eventKey="3-1" href="./#/Student">
+                  Add Student
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="3-2" href="./#/ResultEntry">
+                  Result Entry
+                </Dropdown.Item>
               </Dropdown>
               <Dropdown
                 eventKey="4"
                 trigger="hover"
                 title="Staff"
-                icon={<Icon icon="gear-circle" />}
                 placement="rightStart"
               >
-                <Dropdown.Item eventKey="4-1">Add Staff</Dropdown.Item>
-                <Dropdown.Item eventKey="4-2">View Staff</Dropdown.Item>
+                <Dropdown.Item eventKey="4-1" href="./#/Staff">
+                  Add Staff
+                </Dropdown.Item>
+              </Dropdown>
+              <Dropdown
+                eventKey="5"
+                trigger="hover"
+                title="ClassWork"
+                placement="rightStart"
+              >
+                <Dropdown.Item eventKey="5-1" href="./#/Material">
+                  Material
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="5-2" href="./#/Question">
+                  Question
+                </Dropdown.Item>
               </Dropdown>
             </Nav>
           </Sidenav.Body>
