@@ -1,9 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
-import AddUserForm from "./AddUserForm";
-import EditUserForm from "./EditUserForm";
-import UserTable from "./UserTable";
+import AddStudent from "./AddStudent";
+import EditStudent from "./EditStudent";
+import ViewStudents from "./ViewStudents";
 import { Form, Col } from "react-bootstrap";
 import Helper from "../common/Helper";
+
 const Student = () => {
   const initialFormState = {
     id: null,
@@ -107,7 +108,7 @@ const Student = () => {
           {editing ? (
             <Fragment>
               <h2>Edit Student</h2>
-              <EditUserForm
+              <EditStudent
                 editing={editing}
                 setEditing={setEditing}
                 currentUser={currentUser}
@@ -117,15 +118,18 @@ const Student = () => {
           ) : (
             <Fragment>
               <h2>Add Student</h2>
-              <AddUserForm addUser={addUser} className="containerborder" />
+              <AddStudent addUser={addUser} className="containerborder" />
             </Fragment>
           )}
         </Form.Group>
       </Form.Row>
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="validationCustom01">
-          <h2>View Students</h2>
-          <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
+          <ViewStudents
+            users={users}
+            editRow={editRow}
+            deleteUser={deleteUser}
+          />
         </Form.Group>
       </Form.Row>
     </div>

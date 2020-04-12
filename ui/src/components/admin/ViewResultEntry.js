@@ -1,6 +1,6 @@
 import React from "react";
 import LoadingSpinner from "../common/LoadingSpinner";
-const ViewResultEntry = props => (
+const ViewResultEntry = (props) => (
   <table>
     <thead>
       <tr>
@@ -18,7 +18,7 @@ const ViewResultEntry = props => (
     </thead>
     <tbody>
       {props.users.length > 0 ? (
-        props.users.map(user => (
+        props.users.map((user) => (
           <tr key={user.id}>
             <td>{user.student_rollno}</td>
             <td>{user.exam_type}</td>
@@ -40,7 +40,11 @@ const ViewResultEntry = props => (
           </tr>
         ))
       ) : (
-        <LoadingSpinner />
+        <tr>
+          <td>
+            <LoadingSpinner />
+          </td>
+        </tr>
       )}
     </tbody>
   </table>

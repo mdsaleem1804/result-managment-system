@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Col, Container } from "react-bootstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Helper from "../common/Helper";
+//import "../../css/main.css";
 const AddResultEntry = (props) => {
   const initialFormState = {
     id: null,

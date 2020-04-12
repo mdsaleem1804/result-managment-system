@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import AddResultEntry from "./AddResultEntry";
-import EditUserForm from "../student/EditUserForm";
+import EditStudent from "../student/EditStudent";
 import ViewResultEntry from "./ViewResultEntry";
 import { Form, Col } from "react-bootstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -122,7 +122,7 @@ const Student = () => {
         <Form.Group as={Col} md="12" controlId="validationCustom01">
           {editing ? (
             <Fragment>
-              <EditUserForm
+              <EditStudent
                 editing={editing}
                 setEditing={setEditing}
                 currentUser={currentUser}

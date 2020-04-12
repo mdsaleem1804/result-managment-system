@@ -108,9 +108,6 @@ class SideBarLeft extends Component {
                 <Dropdown.Item eventKey="3-1" href="./#/Student">
                   Add Student
                 </Dropdown.Item>
-                <Dropdown.Item eventKey="3-2" href="./#/ResultEntry">
-                  Result Entry
-                </Dropdown.Item>
               </Dropdown>
               <Dropdown
                 eventKey="4"

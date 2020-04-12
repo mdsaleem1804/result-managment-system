@@ -14,7 +14,11 @@ const FinalResult = (props) => {
   // Setting state
   let usersList;
   if (users.length === 0) {
-    usersList = <h2>No users</h2>;
+    usersList = (
+      <tr>
+        <td>No users</td>
+      </tr>
+    );
   } else {
     if (users.length > 0) {
       usersList = users.map((user) => (
@@ -26,7 +30,11 @@ const FinalResult = (props) => {
         </tr>
       ));
     } else {
-      usersList = <h2>No users</h2>;
+      usersList = (
+        <tr>
+          <td>No users</td>
+        </tr>
+      );
     }
   }
   return (
