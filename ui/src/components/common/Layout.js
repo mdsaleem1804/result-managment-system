@@ -2,10 +2,11 @@ import React from "react";
 import "rsuite/dist/styles/rsuite-default.css";
 import { Container, Header, Content, Footer } from "rsuite";
 import { BrowserRouter as Router } from "react-router-dom";
-import "../../css/main.css";
+//import "../../css/main.css";
 
 import BodyContent from "./BodyContent";
 import HeaderNavBarMain from "./HeaderNavBarMain";
+import FooterWithCopyRight from "./Footer";
 import SideBarLeft from "./SideBarLeft";
 
 class Layout extends React.Component {
@@ -22,7 +23,9 @@ class Layout extends React.Component {
               <Content>
                 <BodyContent />
               </Content>
-              <Footer>Footer</Footer>
+              <Footer>
+                <FooterWithCopyRight />
+              </Footer>
             </Container>
           </Container>
         </div>

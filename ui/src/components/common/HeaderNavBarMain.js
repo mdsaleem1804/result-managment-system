@@ -11,7 +11,7 @@ class HeaderNavBarMain extends Component {
     const loginRegLink = (
       <div>
         <Nav>
-          <Nav.Item href="./#/Login" icon={<Icon icon="home" />}>
+          <Nav.Item href="./#/SignIn" icon={<Icon icon="home" />}>
             Login
           </Nav.Item>
         </Nav>

@@ -1,1 +1,7 @@
 https://en.dev4app.com/archives/55820297-how-to-fix-warning-validatedomnesting-lt-div-gt-cannot-appear-as-a-child-of-lt-tbody-gt.html
+
+https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
+
+https://www.robinwieruch.de/react-hooks-fetch-data
+
+https://www.npmjs.com/package/react-native-material-ui

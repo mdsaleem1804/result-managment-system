@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Login from "../Login";
-import Profile from "../Profile";
+import SignIn from "../SignIn";
+import Dashboard from "../Dashboard";
 import Student from "../student/Student";
 import ResultEntry from "../admin/ResultEntry";
 import ViewInternalResults from "../admin/ViewInternalResults";
@@ -11,16 +11,17 @@ import Subject from "../subject/Subject";
 import Material from "../classwork/Material";
 import Staff from "../staff/Staff";
 import Question from "../classwork/Question";
+import Footer from "../common/Footer";
 
 import { HashRouter as Router, Route } from "react-router-dom";
 class BodyContent extends Component {
   render() {
     return (
       <Router>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={SignIn} />
         <div>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/SignIn" component={SignIn} />
+          <Route exact path="/Dashboard" component={Dashboard} />
           <Route exact path="/student" component={Student} />
           <Route exact path="/ResultEntry" component={ResultEntry} />
           <Route exact path="/FinalResult" component={FinalResult} />
@@ -29,7 +30,7 @@ class BodyContent extends Component {
           <Route exact path="/Material" component={Material} />
           <Route exact path="/Staff" component={Staff} />
           <Route exact path="/Question" component={Question} />
-
+          <Route exact path="/Footer" component={Footer} />
           <Route
             exact
             path="/ViewInternalResults/:id"

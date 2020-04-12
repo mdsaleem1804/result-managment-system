@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-class Profile extends Component {
+class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
       first_name: "",
       last_name: "",
       email: "",
-      errors: {}
+      errors: {},
     };
   }
 
@@ -26,4 +26,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default Dashboard;

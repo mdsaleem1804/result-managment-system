@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import { Form, Col } from "react-bootstrap";
 
-const AddUserForm = props => {
+const AddUserForm = (props) => {
   const initialFormState = {
     id: null,
     student_name: "",
     student_rollno: "",
     student_gender: "",
-    student_email: ""
+    student_email: "",
   };
   const [user, setUser] = useState(initialFormState);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
 
   return (
     <Form
-      onSubmit={event => {
+      onSubmit={(event) => {
         event.preventDefault();
         /* console.log(user.student_name);
         console.log(user.student_rollno);
